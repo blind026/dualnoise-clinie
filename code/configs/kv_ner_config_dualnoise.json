@@ -1,0 +1,66 @@
+{
+  "model_name_or_path": "/data/dual_noise/models/mbert",
+  "tokenizer_name_or_path": "/data/dual_noise/models/mbert",
+  "model_dir": "runs/kv_ner4_bioe/best",
+  "label_map": {
+    "disease_diagnosis": "DIAG",
+    "imaging_exam": "IMAG",
+    "lab_exam": "LAB",
+    "surgery": "SURG",
+    "medication": "MED",
+    "anatomical_site": "ANAT"
+  },
+  "max_seq_length": 512,
+  "label_all_tokens": true,
+  "chunk_size": 500,
+  "chunk_overlap": 50,
+  "merge_adjacent_gap": 5,
+  "value_attach_window": 60,
+  "value_same_line_only": true,
+  "data": {
+    "output_dir": "data/kv_ner_prepared",
+    "train_ratio": 0.9,
+    "seed": 42,
+    "input_files": []
+  },
+  "train": {
+    "data_path": "/data/dual_noise/data/processed/ccks_prepared/L0_q1.0/train.json",
+    "val_data_path": "/data/dual_noise/data/processed/ccks_prepared/L0_q1.0/val.json",
+    "test_split_ratio": 0.5,
+    "output_dir": "/data/dual_noise/runs/ccks_L0_q1.0_seed42",
+    "train_batch_size": 16,
+    "eval_batch_size": 16,
+    "num_workers": 0,
+    "pin_memory": false,
+    "learning_rate": 2e-05,
+    "weight_decay": 0.03,
+    "num_train_epochs": 2,
+    "gradient_accumulation_steps": 1,
+    "warmup_ratio": 0.05,
+    "max_grad_norm": 1.0,
+    "dropout": 0.2,
+    "freeze_encoder": false,
+    "unfreeze_last_n_layers": null,
+    "use_bilstm": true,
+    "lstm_hidden_size": 384,
+    "lstm_num_layers": 3,
+    "lstm_dropout": 0.2,
+    "log_per_token_loss": true
+  },
+  "predict": {
+    "input_path": "data/kv_ner_prepared/val_eval.jsonl",
+    "output_path": "runs/kv_ner4_bioe/predictions.json",
+    "model_dir": "runs/kv_ner4_bioe/best",
+    "batch_size": 16,
+    "num_workers": 0,
+    "pin_memory": false
+  },
+  "evaluate": {
+    "model_dir": "runs/kv_ner4_bioe/best",
+    "eval_data_path": "data/kv_ner_prepared/val_eval.jsonl",
+    "output_dir": "data/kv_ner_eval_bioe",
+    "batch_size": 16,
+    "num_workers": 0,
+    "pin_memory": false
+  }
+}
