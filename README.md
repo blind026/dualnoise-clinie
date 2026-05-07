@@ -6,7 +6,7 @@ evaluation harness, and reference baselines used in DualNoise-ClinIE.
 ## Contents
 
 - `code/` — Python scripts (noise injection, annotation error simulation, conversion to Label Studio, evaluation)
-- `configs/` — config files for the BERT-CRF trainer
+- `code/configs/` — config files for the BERT-CRF trainer
 - `figures/` — Fig 4–6 PDFs and PNGs for both ZH and EN tracks
 - `results_master.csv` — full per-cell results across encoder-CRF + GPT-4o + DeepSeek-V4-Pro + Qwen3-8B
 - `anova_table_{zh,en}.tex` — variance decomposition tables
